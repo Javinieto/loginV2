@@ -1,21 +1,29 @@
 # EV01 Proyecto Integrador
-## 1 Proceso de registro
-En esta primera versión se van a trabajar aspectos relacionados con la comunicación entre PHP y MySQL, además de la gestión de sesiones.
+## 2 Data Access Object
+Vamos a mejorar la arquitectura de nuestra aplicación.
 
 ### Lista de tareas a completar
-Comienza obteniendo el proyecto desde el repositorio inicial.
-¡Importante! Para realizar las tareas a lo largo de todo el proyecto debes de disponer
-de un repositorio en Bitbucket e ir completando las tareas en Trello de una manera
-correcta.
-#### 1 Registro
-__signup.php__
-* Realiza la lectura de los campos del formulario en $user y $pass
-* Establecer el almacenamiento de usuario en la sesión para que al pulsar sobre el menú de Acceder no se le vuelva a preguntar por usuario/contraseña.
-* Muestra mensaje de error x2
-#### 2 Acceso
-__login.php__
-* Establecer la consulta de base de datos correspondiente para verificar si el usuario existe.
-    $result = queryMySQL("")
-*  Realiza la gestión de la sesión de usuario.  Almacena en la variables de sesión user el valor de $user
-* Corrige el BUG.
-* Muestra el mensaje de error x2
+
+#### 3 Arquitectura de la aplicación
+Establece los cuatro directorios principales
+* app
+* assets
+* utils
+* persistence
+* Añade el directorio templates
+
+#### 4 Vistas
+Descarga el Famework Bootstrap
+* Añade los CSS y JS de Bootstrap dentro de la carpeta assets y modifica los enlaces de la cabecera para que apuntes a los archivos descargados.
+Establece las vistas dentro del directorio app
+* Establece las vistas dentro del directorio app
+Persistencia
+* Crea un archivo credentials.json para almacenar la configuración de conexión a base de datos dentro de persistence/conf
+Gestor de persistencia
+* Crea el archivo GenericDAO.php para definir las funciones CRUD
+* Completa un script UserDAO que herede de GenericDAO.
+Utilidades
+* Traslada las funciones de tratamiento de sesiones en SessionHelper.php
+Modificaciones en la lógica
+Ahora, tenemos que tener en cuenta que parte de nuestra lógica y gestión de datos se encuentra en los archivos de las vistas; login.php, logout.php y signup.php
+Vamos a modificar estos scripts para que hagan uso de los elementos que hemos añadido en esta versión.

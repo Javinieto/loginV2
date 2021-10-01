@@ -8,36 +8,34 @@
  * @author ander_frago@cuatrovientos.org
  */
 
-require_once 'header.php';
+require_once '../templates/header.php';
+//TODO completa los requiere que necesites
+...
 
 $error = $user = $pass = "";
 
 if (isset($_POST['email'])) {
 
   // TODO Realiza la lectura de los campos del formulario en $user y $pass
-  $user=$_POST["email"];
-  $pass=$_POST["password"];
+  ...
+  ...
 
   if ($user == "" || $pass == "") {
-    $error = "Debes completar todos los campos";
+    $error = "Debes completar todos los campos<br><br>";
   }
   else {
-    $result = queryMysql("SELECT * FROM members WHERE user='$user'");
 
-    if ($result->num_rows) {
-      $error = "El usuario ya existe";
-    }
-    else {
-      queryMysql("INSERT INTO members(user,pass) VALUES('$user', '$pass')");
+      // TODO Obten una instancia de PersistenManager
+      ...
+     // TODO Inserta el nuevo usuario atraves de un objeto UserDAO
+     ...
+     ...
 
-      // TODO
-      // Establecer el almacenamiento de usuario en una variable "user" almacenada en sesión
-      // para que al pulsar sobre el menú de Acceder no se le vuelva a preguntar por usuario/contraseña
-      $_SESSION["user"]=$user;
 
-      header('Location: login.php?');
+     // TODO establece el usuario en sesión con SessionHelper
+     ...
+     header('Location: login.php?');
 
-    }
   }
 }
 ?>
@@ -69,7 +67,7 @@ if (isset($_POST['email'])) {
             <div class="col-md-3">
                 <div class="form-control-feedback">
                     <span class="text-danger align-middle">
-                        <i class="fa fa-close"></i> <?php if(isset($error))echo $error; ?>
+                        <i class="fa fa-close"></i> // TODO: Muestra mensaje de error  ...
                     </span>
                 </div>
             </div>
@@ -91,7 +89,7 @@ if (isset($_POST['email'])) {
             <div class="col-md-3">
                 <div class="form-control-feedback">
                     <span class="text-danger align-middle">
-                        <?php //  TODO: Muestra mensaje de error      } ?>
+                         // TODO: Muestra mensaje de error      }  ...
                     </span>
                 </div>
             </div>

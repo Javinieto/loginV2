@@ -7,12 +7,16 @@
  *
  * @author ander_frago@cuatrovientos.org
  */
+require_once '../templates/header.php';
 
-require_once 'header.php'; 
-$error = $user = $pass = "";
+require_once '../persistence/conf/PersistentManager.php';
+require_once '../persistence/DAO/UserDAO.php';
+//TODO completa los requiere que necesites
+...
 // Al pulsar el boton del formulario se recarga la misma página, volviendo a ejecutar este script.
 // En caso de que se haya  completado los valores del formulario se verifica la existencia de usuarios en la base de datos
 // para los valores introducidos.
+
 if (isset($_POST['user']))
 {
   $user = $_POST['user'];
@@ -22,41 +26,34 @@ if (isset($_POST['user']))
       $error = "Debes completar todos los campos<br>";
   else
   {
-      // TODO Esta la consulta de base de datos correspondiente para verificar si el usuario existe
-      
-       $result = queryMySQL("Select user, pass FROM members
-              WHERE user='$user' AND pass='$pass'");
-
-    if ($result->num_rows == 0)
+    // TODO Obten una instancia de PersistenManager
+    ...
+    // TODO Crea un objeto UserDAO
+    ...
+    // TODO En caso de que exista un usuario... checkExists
+    if (...)
     {
       $error = "<span class='error'>Email/Contraseña invalida</span><br><br>";
     }
     else
     {
-      // TODO Realiza la gestión de la sesión de usuario:
-      // Almacena en la variables de sesión user el valore de $user
-      $_SESSION["user"]=$user;
-
-      // Control de vida de la sesión antes de que expire
-      if (!isset($_SESSION['CREATED'])) {
-        $_SESSION['CREATED'] = time();
-      } else if (time() - $_SESSION['CREATED'] > 1800) {
-        // session started more than 30 minutes ago
-        session_regenerate_id(true);    // change session ID for the current session and invalidate old session ID
-        $_SESSION['CREATED'] = time();  // update creation time
-      }
-        
+      // Realiza la gestión de la sesión de usuario:
+      // TODO Almacena el valor de la variable $user en la sesión, con clave user    
+      ...
+      // TODO: Llama al método estático startSessionIfNotStarted de SessionHelper
+      ...
       // En caso de un registro  exitoso 
-      // La gestión de usuario en la página principal se hace a través de la variable de sesión
-      header('Location: index.php');
+      // TODO Redirecciona a la página principal
+      ...
     }
   }
 }
 // En caso de que no se haya completado el formulario,
 // analizamos si hay variable de sesión almacenada.
-else if (isset($_SESSION['user'])){
-    // En caso de que exista variable de sesión redireccionamos a la página principal
-     header('Location: index.php'); 
+// TODO: Realiza un isset de la variable de sesión con clave user
+else if (...){
+    // TODO: En caso de que exista variable de sesión redireccionamos a la página principal
+    ...
 }
 ?>
 <div class="container">
@@ -75,9 +72,7 @@ else if (isset($_SESSION['user'])){
                       <label class="sr-only" for="email">Email:</label>
                       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                           <div class="input-group-addon" style="width: 2.6rem"></div>
-                          <!--
-                         TODO Corrige el BUG
-                          -->
+                           <!-- TODO Corrige el BUG -->
                           <input type="text" name="user" class="form-control" id="email"
                                  placeholder="yoxti@ejemplo.com" required autofocus>
                       </div>
@@ -86,7 +81,7 @@ else if (isset($_SESSION['user'])){
               <div class="col-md-3">
                   <div class="form-control-feedback">
                       <span class="text-danger align-middle">
-                          <i class="fa fa-close"></i> <?php  if(isset($error))echo $error; ?>
+                          <i class="fa fa-close"></i>  ...  //TODO Muestra el mensaje de error  
                       </span>
                   </div>
               </div>
@@ -106,7 +101,7 @@ else if (isset($_SESSION['user'])){
               <div class="col-md-3">
                   <div class="form-control-feedback">
                       <span class="text-danger align-middle">
-                     <?php // TODO Muestra el mensaje de error ?>
+                      ...// TODO Muestra el mensaje de error 
                       </span>
                   </div>
               </div>
