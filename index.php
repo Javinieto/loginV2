@@ -19,7 +19,7 @@ include 'templates/header.php';
   <div id="bienvenida" class="container">
     <h1 class='display-3'>Bienvenid@ a Artean</h1>
     <?php
-    if ($loggedin) echo "<span class='badge badge-default'> Has iniciado sesión: ".$user."</span>";
+    if (SessionHelper::loggedIn()) echo "<span class='badge badge-default'> Has iniciado sesión: ".$user."</span>";
     else           echo "<span class='badge badge-default'> por favor, regístrate o inicia sesión.</span>";
     ?>
   </div>

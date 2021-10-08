@@ -10,15 +10,14 @@
 
 require_once '../templates/header.php';
 //TODO completa los requiere que necesites
-...
 
 $error = $user = $pass = "";
 
 if (isset($_POST['email'])) {
 
   // TODO Realiza la lectura de los campos del formulario en $user y $pass
-  ...
-  ...
+    $user = $_POST['$user'];
+    $pass = $_POST['$pass'];
 
   if ($user == "" || $pass == "") {
     $error = "Debes completar todos los campos<br><br>";
@@ -26,14 +25,13 @@ if (isset($_POST['email'])) {
   else {
 
       // TODO Obten una instancia de PersistenManager
-      ...
+      PersistentManager::getInstance();
      // TODO Inserta el nuevo usuario atraves de un objeto UserDAO
-     ...
-     ...
+     UserDAO::insert($user, $pass);
 
 
      // TODO establece el usuario en sesión con SessionHelper
-     ...
+     SessionHelper::setSession($user);
      header('Location: login.php?');
 
   }

@@ -35,7 +35,9 @@ class UserDAO extends GenericDAO {
     $query = "SELECT email, password FROM " . UserDAO::USER_TABLE . " WHERE email=? AND password=?";
     $stmt = mysqli_prepare($this->conn, $query);
     mysqli_stmt_bind_param($stmt, 'ss', $email, $password);
-    if(mysqli_stmt_execute($stmt)>0)
+    mysqli_stmt_execute($stmt);
+        $result= $stmt->get_result();
+          If($result->num_rows>0)
       return true;
     else
       return false;

@@ -16,7 +16,9 @@ class SessionHelper {
    */
   static function startSessionIfNotStarted() {
     if (session_status() == PHP_SESSION_NONE) {
-      session_start();
+          session_start([
+      'cookie_lifetime' => 86400,
+    ]);
     }
   }
 
@@ -41,9 +43,7 @@ class SessionHelper {
   }
 
   static function loggedIn() {
-    session_start([
-      'cookie_lifetime' => 86400,
-    ]);
+      SessionHelper::startSessionIfNotStarted();
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
       // last request was more than 30 minutes ago
       session_unset();     // unset $_SESSION variable for the run-time

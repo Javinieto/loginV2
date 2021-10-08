@@ -12,7 +12,7 @@ require_once '../templates/header.php';
 require_once '../persistence/conf/PersistentManager.php';
 require_once '../persistence/DAO/UserDAO.php';
 //TODO completa los requiere que necesites
-...
+
 // Al pulsar el boton del formulario se recarga la misma página, volviendo a ejecutar este script.
 // En caso de que se haya  completado los valores del formulario se verifica la existencia de usuarios en la base de datos
 // para los valores introducidos.
@@ -27,11 +27,11 @@ if (isset($_POST['user']))
   else
   {
     // TODO Obten una instancia de PersistenManager
-    ...
+    PersistentManager::getInstance();
     // TODO Crea un objeto UserDAO
-    ...
+    $userDAO = new UserDAO();
     // TODO En caso de que exista un usuario... checkExists
-    if (...)
+    if ($userDAO->checkExists($user, $pass))
     {
       $error = "<span class='error'>Email/Contraseña invalida</span><br><br>";
     }
@@ -39,21 +39,21 @@ if (isset($_POST['user']))
     {
       // Realiza la gestión de la sesión de usuario:
       // TODO Almacena el valor de la variable $user en la sesión, con clave user    
-      ...
+      SessionHelper::setSession($user);
       // TODO: Llama al método estático startSessionIfNotStarted de SessionHelper
-      ...
+      SessionHelper::startSessionIfNotStarted();
       // En caso de un registro  exitoso 
       // TODO Redirecciona a la página principal
-      ...
+      header("Location: .. index.php");
     }
   }
 }
 // En caso de que no se haya completado el formulario,
 // analizamos si hay variable de sesión almacenada.
 // TODO: Realiza un isset de la variable de sesión con clave user
-else if (...){
+else if (isset($_SESSION['$user'])){
     // TODO: En caso de que exista variable de sesión redireccionamos a la página principal
-    ...
+    header("Location: . index.php");
 }
 ?>
 <div class="container">

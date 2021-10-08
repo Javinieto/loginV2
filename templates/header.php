@@ -86,7 +86,7 @@ else {
                     <a class="nav-link" href="app/signup.php">Registrarse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="app/login.php">Entrar</a>
+                    <a class="nav-link" href="./login.php">Entrar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="app/logout.php">Salir</a>
