@@ -81,7 +81,7 @@ else if (isset($_SESSION['$user'])){
               <div class="col-md-3">
                   <div class="form-control-feedback">
                       <span class="text-danger align-middle">
-                          <i class="fa fa-close"></i>  ...  //TODO Muestra el mensaje de error  
+                          <i class="fa fa-close"></i>    
                       </span>
                   </div>
               </div>
@@ -101,7 +101,7 @@ else if (isset($_SESSION['$user'])){
               <div class="col-md-3">
                   <div class="form-control-feedback">
                       <span class="text-danger align-middle">
-                      ...// TODO Muestra el mensaje de error 
+                      
                       </span>
                   </div>
               </div>
